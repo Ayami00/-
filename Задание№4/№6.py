@@ -4,3 +4,17 @@
 # каждого предмета не обязательно были все типы занятий. Сформировать
 # словарь, содержащий название предмета и общее количество занятий по нему.
 # Вывести словарь на экран.
+
+import re
+
+sp = {}
+with open('#6.txt', 'r') as file:
+    text = file.read()
+    file.seek(0)
+
+    for i in file:
+        i_items = i.split(': ')
+        chas = re.findall(r"\d+", i_items[1])
+        sp.update({i_items[0]: sum([int(i) for i in chas])})
+
+print(f"Словарь:\n{sp}")
